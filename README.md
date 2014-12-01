@@ -1,4 +1,4 @@
-# HasSecurePassword
+# HasSecureToken
 
 TODO: Write a gem description
 
