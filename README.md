@@ -1,17 +1,5 @@
 # HasSecureToken
 
-##Setting your Model
-
-```ruby
-class User
-  has_secure_token :token1, :token2
-end
-
-user = User.create
-user.token1 => "44539a6a59835a4ee9d7b112b48cd76e"
-user.token2 => "226dd46af6be78953bde1641622497a8"
-```
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -26,9 +14,17 @@ Or install it yourself as:
 
     $ gem install has_secure_password
 
-## Usage
+##Setting your Model
 
-TODO: Write usage instructions here
+```ruby
+class User
+  has_secure_token :token1, :token2
+end
+
+user = User.create
+user.token1 => "44539a6a59835a4ee9d7b112b48cd76e"
+user.token2 => "226dd46af6be78953bde1641622497a8"
+```
 
 ## Contributing
 
