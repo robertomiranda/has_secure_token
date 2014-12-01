@@ -1,6 +1,16 @@
 # HasSecureToken
 
-TODO: Write a gem description
+##Setting your Model
+
+```ruby
+class User
+  has_secure_token :token1, :token2
+end
+
+user = User.create
+user.token1 => "44539a6a59835a4ee9d7b112b48cd76e"
+user.token2 => "226dd46af6be78953bde1641622497a8"
+```
 
 ## Installation
 
