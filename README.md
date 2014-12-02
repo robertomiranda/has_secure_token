@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/robertomiranda/has_secure_token.png)](https://travis-ci.org/robertomiranda/has_secure_token)
+[![Gem Version](https://badge.fury.io/rb/has_secure_token.svg)](http://badge.fury.io/rb/has_secure_token)
+[![Dependency Status](https://gemnasium.com/robertomiranda/has_secure_token.svg)](https://gemnasium.com/robertomiranda/has_secure_token)
+[![Code Climate](https://codeclimate.com/github/robertomiranda/has_secure_token/badges/gpa.svg)](https://codeclimate.com/github/robertomiranda/has_secure_token)
+
 # HasSecureToken
 
 ## Installation
