@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = HasSecureToken::VERSION
   spec.authors       = ["Roberto Miranda Altamar"]
   spec.email         = ["rjmaltamar@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Create uniques random tokens for any model in ruby on rails.}
+  spec.description   = %q{Add to your models an easily way to generate tokens}
+  spec.homepage      = "https://github.com/robertomiranda/has_secure_token"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
