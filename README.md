@@ -9,7 +9,7 @@
 
 Add this line to your application's Gemfile:
 
-    gem 'has_secure_password'
+    gem 'has_secure_token'
 
 And then execute:
 
@@ -17,7 +17,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install has_secure_password
+    $ gem install has_secure_token
 
 ##Setting your Model
 
