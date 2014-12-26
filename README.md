@@ -22,7 +22,7 @@ Or install it yourself as:
 ##Setting your Model
 
 ```ruby
-class User
+class User < ActiveRecord::Base
   has_secure_token :token1, :token2
 end
 
