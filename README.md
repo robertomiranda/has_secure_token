@@ -23,7 +23,7 @@ Or install it yourself as:
 
 ```ruby
 class User < ActiveRecord::Base
-  has_secure_token :token1, :token2
+  has_secure_token :token1, :token2, key_length: 24
 end
 
 user = User.create
