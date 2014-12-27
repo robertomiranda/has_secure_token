@@ -11,4 +11,8 @@ class User
   def self.exists?(attrs)
     false
   end
+
+  def save
+    true
+  end
 end
