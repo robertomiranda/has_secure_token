@@ -25,7 +25,7 @@ module HasSecureToken
       options = args.extract_options!
 
       key_length = options.fetch(:key_length, 24)
-      bytes = (key_length / 2.0).ceil
+      bytes = ((key_length*3.0)/4.0)
 
       args.each do |attribute|
         define_method("regenerate_#{attribute}!") do
@@ -45,7 +45,7 @@ module HasSecureToken
   module InstanceMethodsOnActivation
     def generate_unique_secure_token(attribute, bytes, key_length)
       self.send("#{attribute}=", loop do
-        random_token =  SecureRandom.hex(bytes)[0..key_length]
+        random_token =  SecureRandom.base64(bytes)[0..key_length-1]
         break random_token unless self.class.exists?(attribute => random_token)
       end)
     end
