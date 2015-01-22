@@ -15,8 +15,8 @@ module HasSecureToken
     #   user.save
     #   user.auth_token # => "44539a6a59835a4ee9d7b112"
     #   user.invitation_token # => "226dd46af6be78953bde1648"
-    #   user.regenerate_auth_token # => true
-    #   user.regenerate_invitation_token # => true
+    #   user.regenerate_auth_token! # => true
+    #   user.regenerate_invitation_token! # => true
     def has_secure_token(*args)
       # Load securerandom only when has_secure_key is used.
       require 'securerandom'
