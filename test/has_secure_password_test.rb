@@ -1,37 +1,31 @@
 require "test_helper"
 
-class HasSecureTokenTest < MiniTest::Unit::TestCase
+class SecureTokenTest < MiniTest::Unit::TestCase
   def setup
     @user = User.new
-    @user.run_callbacks :create
-    @visitor = Visitor.new
-    @visitor.run_callbacks :create
   end
 
-  def test_assing_token_values
-    assert_not_nil @user.auth_token
-    assert_not_nil @user.invitation_token
+  def test_token_values_are_generated_for_specified_attributes_and_persisted_on_save
+    @user.save
+    refute_nil @user.token
+    refute_nil @user.auth_token
   end
 
-  def test_default_length_of_secure_token_is_set_to_24
-    assert_equal 24, @user.auth_token.length
-    assert_equal 24, @user.invitation_token.length
-  end
-
-  def test_create_record_with_customised_length_of_secure_token
-    assert_equal 30, @visitor.auth_token.length
-    assert_equal 30, @visitor.invitation_token.length
-  end
-
-  def test_regenerate_the_secure_key_for_the_attribute
+  def test_regenerating_the_secure_token
+    @user.save
+    old_token = @user.token
     old_auth_token = @user.auth_token
-    old_invitation_token = @user.invitation_token
-    @user.regenerate_auth_token!
-    @user.regenerate_invitation_token!
+    @user.regenerate_token
+    @user.regenerate_auth_token
 
-    assert @user.auth_token != old_auth_token
-    assert @user.invitation_token != old_invitation_token
-    assert_equal 24, @user.auth_token.length
-    assert_equal 24, @user.invitation_token.length
+    refute_equal @user.token, old_token
+    refute_equal @user.auth_token, old_auth_token
+  end
+
+  def test_token_value_not_overwritten_when_present
+    @user.token = "custom-secure-token"
+    @user.save
+
+    assert_equal @user.token, "custom-secure-token"
   end
 end

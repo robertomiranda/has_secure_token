@@ -15,3 +15,11 @@ Dir["models/*.rb"].each {|file| require file }
         msg = message(msg) { "<#{mu_pp(exp)}> expected to not be nil" }
         assert(!exp.nil?, msg)
   end
+
+DB_FILE = 'tmp/test_db'
+FileUtils.mkdir_p File.dirname(DB_FILE)
+FileUtils.rm_f DB_FILE
+
+ActiveRecord::Base.establish_connection :adapter => 'sqlite3', :database => DB_FILE
+
+load 'schema.rb'
