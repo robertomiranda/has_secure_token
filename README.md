@@ -5,6 +5,10 @@
 
 # HasSecureToken
 
+HasSecureToken provides you an easily way to geneatre uniques random tokens for any model in ruby on rails. **SecureRandom::base58** is used to generate the 24-character unique token, so collisions are highly unlikely.
+
+**Note** that it's still possible to generate a race condition in the database in the same way that **validates_uniqueness_of** can. You're encouraged to add a unique index in the database to deal
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -19,16 +23,44 @@ Or install it yourself as:
 
     $ gem install has_secure_token
 
-##Setting your Model
+
+## Setting your Model
+
+The first step is to run the migration generator in order to add the token key field.
 
 ```ruby
+rails g migration AddTokenToUsers token:string
+=>
+   invoke  active_record
+   create    db/migrate/20150424010931_add_token_to_users.rb
+```
+
+Then need to run `rake db:migrate` to update the users table in the database. The next step is to update the model code
+
+```ruby
+# Schema: User(token:string, auth_token:string)
 class User < ActiveRecord::Base
-  has_secure_token :token1, :token2, key_length: 24
+  has_secure_token
 end
 
-user = User.create
-user.token1 => "44539a6a59835a4ee9d7b112b48cd76e"
-user.token2 => "226dd46af6be78953bde1641622497a8"
+user = User.new
+user.save
+user.token # => "4kUgL2pdQMSCQtjE"
+user.regenerate_token # => true
+```
+
+To use a custom column to store the token key field you can use the column_name option.
+
+```ruby
+# Schema: User(token:string, auth_token:string)
+class User < ActiveRecord::Base
+  has_secure_token :auth_token
+end
+
+user = User.new
+user.save
+user.auth_token # => "4kUgL2pdQMSCQtjE"
+user.regenerate_auth_token # => true
 ```
 
 ## Contributing
