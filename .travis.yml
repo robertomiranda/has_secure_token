@@ -1,10 +1,13 @@
+language: ruby
 rvm:
   - 1.9.3
   - 2.0.0
   - 2.1
-matrix:
-  include:
-    - rvm: jruby
-      env: JRUBY_OPTS="--1.9 --server -Xcext.enabled=true"
+  - 2.2
+gemfile:
+  - gemfiles/rails3.gemfile
+  - gemfiles/rails4_0.gemfile
+  - gemfiles/rails4_1.gemfile
+  - gemfiles/rails4_2.gemfile
 notifications:
   email: false
