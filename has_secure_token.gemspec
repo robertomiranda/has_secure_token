@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = HasSecureToken::VERSION
   spec.authors       = ["Roberto Miranda Altamar"]
   spec.email         = ["rjmaltamar@gmail.com"]
-  spec.summary       = %q{Create uniques random tokens for any model in ruby on rails.}
+  spec.summary       = %q{Create uniques random tokens for any model in ruby on rails. Backport of ActiveRecord::SecureToken 5 to AR 3.x and 4.x}
   spec.description   = %q{HasSecureToken provides you an easily way to geneatre uniques random tokens for any model in ruby on rails. **SecureRandom::base58** is used to generate the 24-character unique token, so collisions are highly unlikely.}
   spec.homepage      = "https://github.com/robertomiranda/has_secure_token"
   spec.license       = "MIT"
