@@ -5,9 +5,9 @@
 
 # HasSecureToken
 
-HasSecureToken provides you an easily way to geneatre uniques random tokens for any model in ruby on rails. **SecureRandom::base58** is used to generate the 24-character unique token, so collisions are highly unlikely.
+HasSecureToken provides an easy way to generate uniques random tokens for any model in ruby on rails. **SecureRandom::base58** is used to generate the 24-character unique tokens, so collisions are highly unlikely.
 
-**Note** that it's still possible to generate a race condition in the database in the same way that **validates_uniqueness_of** can. You're encouraged to add a unique index in the database to deal
+**Note** If you're worried about possible collissions, there's a way to generate a race condition in the database in the same way that **validates_uniqueness_of** can. You're encouraged to add an unique index in the database to deal
 
 ## Installation
 
@@ -15,7 +15,7 @@ Add this line to your application's Gemfile:
 
     gem 'has_secure_token'
 
-And then execute:
+And then run:
 
     $ bundle
 
@@ -26,7 +26,7 @@ Or install it yourself as:
 
 ## Setting your Model
 
-The first step is to run the migration generator in order to add the token key field.
+The first step is to generate a migration in order to add the token key field.
 
 ```ruby
 rails g migration AddTokenToUsers token:string
@@ -35,8 +35,8 @@ rails g migration AddTokenToUsers token:string
    create    db/migrate/20150424010931_add_token_to_users.rb
 ```
 
-Then need to run `rake db:migrate` to update the users table in the database. The next step is to update the model code
-
+Then run `rake db:migrate` in order to update users table in the database. The next step is to add `has_secure_token`
+ to the model: 
 ```ruby
 # Schema: User(token:string, auth_token:string)
 class User < ActiveRecord::Base
@@ -49,7 +49,7 @@ user.token # => "4kUgL2pdQMSCQtjE"
 user.regenerate_token # => true
 ```
 
-To use a custom column to store the token key field you can use the column_name option.
+To use a custom column to store the token key field you can specify the column_name option. See example above (e.g: auth_token): 
 
 ```ruby
 # Schema: User(token:string, auth_token:string)
