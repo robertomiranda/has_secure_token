@@ -1,6 +1,6 @@
 require "test_helper"
 
-class SecureRandomTest < Minitest::Test
+class SecureRandomTest < MiniTest::Unit::TestCase
   def test_base58
     s1 = SecureRandom.base58
     s2 = SecureRandom.base58

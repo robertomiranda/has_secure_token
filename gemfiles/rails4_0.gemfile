@@ -3,4 +3,5 @@ gemspec :path => '../'
 
 group :development, :test do
   gem 'activerecord', '~> 4.0.0'
+  gem 'minitest', '~> 4.2'
 end

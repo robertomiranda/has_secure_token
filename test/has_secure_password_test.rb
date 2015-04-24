@@ -1,6 +1,6 @@
 require "test_helper"
 
-class SecureTokenTest < Minitest::Test
+class SecureTokenTest < MiniTest::Unit::TestCase
   def setup
     @user = User.new
   end
