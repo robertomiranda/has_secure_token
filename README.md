@@ -45,7 +45,7 @@ end
 
 user = User.new
 user.save
-user.token # => "4kUgL2pdQMSCQtjE"
+user.token # => "pX27zsMN2ViQKta1bGfLmVJE"
 user.regenerate_token # => true
 ```
 
@@ -59,7 +59,7 @@ end
 
 user = User.new
 user.save
-user.auth_token # => "4kUgL2pdQMSCQtjE"
+user.auth_token # => "pX27zsMN2ViQKta1bGfLmVJE"
 user.regenerate_auth_token # => true
 ```
 
