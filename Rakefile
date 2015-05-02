@@ -2,11 +2,6 @@ require "bundler/gem_tasks"
 require 'rake/testtask'
 Bundler::GemHelper.install_tasks
 
-task :console do
-  puts "Loading development console..."
-  system("irb -r active_model_otp")
-end
-
 task :help do
   puts "Available rake tasks: "
   puts "rake console - Run a IRB console with all enviroment loaded"
