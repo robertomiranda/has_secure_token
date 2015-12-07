@@ -62,6 +62,22 @@ user.auth_token # => "pX27zsMN2ViQKta1bGfLmVJE"
 user.regenerate_auth_token # => true
 ```
 
+To generate `tokens` as per desired length:
+
+```ruby
+#schema: User(token:string, auth_secret:string)
+class User < ActiveRecord::Base
+  has_secure_token   # default token size 24
+  has_secure_token :auth_secret, token_size: 80
+end
+
+user = User.new
+user.save
+user.token # => "6UFUgE2vXsXcQT64K9yQE59M"
+user.secret_token # => "6JTE6tZkBgbA6H426WkZteHZtzq1viVapD8QJ5B8v6G9zaxmSQHxUULNSM5moZ4wesNb2LHQSSQHm4vU"
+user.regenerate_secret_token # => true
+```
+
 ## Running tests
 
 Running
