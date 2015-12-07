@@ -9,5 +9,13 @@ gemfile:
   - gemfiles/rails4_0.gemfile
   - gemfiles/rails4_1.gemfile
   - gemfiles/rails4_2.gemfile
+before_install:
+- gem update --system
+- gem install bundler
+install: bundle install
+script: bundle exec rake build
+env:
+  global:
+    secure: 0dc92adb26454f7a8fcf0639f9f85150fd82b08cabfe8a66e0c5dc85a9cdddbc83b38468f863048af3e7dec3dd3e354e0a50c1b327a1a9f556357897e13e8bc6
 notifications:
   email: false
