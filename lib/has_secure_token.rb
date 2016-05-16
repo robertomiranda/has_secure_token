@@ -10,6 +10,8 @@ module ActiveRecord
       #   class User < ActiveRecord::Base
       #     has_secure_token
       #     has_secure_token :auth_token
+      #     has_secure_token uniq: true
+      #     has_secure_token :auth_token, uniq: true
       #   end
       #
       #   user = User.new
@@ -24,10 +26,23 @@ module ActiveRecord
       # Note that it's still possible to generate a race condition in the database in the same way that
       # <tt>validates_uniqueness_of</tt> can. You're encouraged to add a unique index in the database to deal
       # with this even more unlikely scenario.
-      def has_secure_token(attribute = :token)
+      def has_secure_token(attribute = :token, options = {})
         # Load securerandom only when has_secure_token is used.
         require 'active_support/core_ext/securerandom'
-        define_method("regenerate_#{attribute}") { update_attributes attribute => self.class.generate_unique_secure_token }
+
+        define_method("regenerate_#{attribute}") do
+          if options[:uniq]
+            token = loop do
+              random_token = self.class.generate_unique_secure_token
+              break random_token unless self.exists?(attribute => random_token)
+            end
+          else
+            token = self.class.generate_unique_secure_token
+          end
+
+          update_attributes attribute => token
+        end
+
         before_create { self.send("#{attribute}=", self.class.generate_unique_secure_token) unless self.send("#{attribute}?")}
       end
 
