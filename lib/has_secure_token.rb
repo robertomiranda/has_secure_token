@@ -27,7 +27,7 @@ module ActiveRecord
       def has_secure_token(attribute = :token)
         # Load securerandom only when has_secure_token is used.
         require 'active_support/core_ext/securerandom'
-        define_method("regenerate_#{attribute}") { update_attributes attribute => self.class.generate_unique_secure_token }
+        define_method("regenerate_#{attribute}") { update attribute => self.class.generate_unique_secure_token }
         before_create { self.send("#{attribute}=", self.class.generate_unique_secure_token) unless self.send("#{attribute}?")}
       end
 
